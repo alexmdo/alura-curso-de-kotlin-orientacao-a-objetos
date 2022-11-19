@@ -7,6 +7,12 @@ fun main() {
     contaAlexandre.saldo = 100.0
     println(contaAlexandre)
 
+    val contaFran = Conta()
+    contaFran.titular = "Fran"
+    contaFran.numero = 4840
+    contaFran.saldo = 200.0
+    println(contaFran)
+
     contaAlexandre.depositar(50.0)
     println(contaAlexandre)
 
@@ -15,6 +21,15 @@ fun main() {
 
     contaAlexandre.sacar(140.0)
     println(contaAlexandre)
+
+    if (contaAlexandre.transferir(100.0, contaFran)) {
+        println("Transferencia sucedida")
+    } else {
+        println("Falha na transferencia")
+    }
+
+    println(contaAlexandre)
+    println(contaFran)
 }
 
 class Conta {
@@ -32,6 +47,17 @@ class Conta {
         if (saldo >= valor) {
             saldo -= valor
         }
+    }
+
+    fun transferir(valor: Double, contaDestino: Conta): Boolean {
+        println("transferencia de $valor da conta do $titular para conta ${contaDestino.titular}")
+        if (saldo >= valor) {
+            saldo -= valor
+            contaDestino.saldo += valor
+            return true
+        }
+
+        return false
     }
 
     override fun toString(): String {
