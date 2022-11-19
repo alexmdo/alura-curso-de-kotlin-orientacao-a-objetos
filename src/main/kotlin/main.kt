@@ -5,13 +5,16 @@ fun main() {
     contaAlexandre.titular = "Alexandre"
     contaAlexandre.numero = 4140
     contaAlexandre.saldo = 100.0
-
-
     println(contaAlexandre)
+
     contaAlexandre.depositar(50.0)
-
     println(contaAlexandre)
 
+    contaAlexandre.sacar(20.0)
+    println(contaAlexandre)
+
+    contaAlexandre.sacar(140.0)
+    println(contaAlexandre)
 }
 
 class Conta {
@@ -22,6 +25,13 @@ class Conta {
     fun depositar(valor: Double) {
         println("depositando na conta do ${this.titular}")
         this.saldo += valor
+    }
+
+    fun sacar(valor: Double) {
+        println("sacando da conta do ${this.titular}")
+        if (saldo >= valor) {
+            saldo -= valor
+        }
     }
 
     override fun toString(): String {
