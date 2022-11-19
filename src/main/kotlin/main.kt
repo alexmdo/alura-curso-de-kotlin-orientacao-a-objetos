@@ -5,6 +5,35 @@ fun main() {
     contaAlexandre.titular = "Alexandre"
     contaAlexandre.numero = 4140
     contaAlexandre.saldo = 100.0
+
+
+    println(contaAlexandre)
+    contaAlexandre.depositar(50.0)
+
+    println(contaAlexandre)
+
+}
+
+class Conta {
+    var titular = ""
+    var numero = 0
+    var saldo = 0.0
+
+    fun depositar(valor: Double) {
+        println("depositando na conta do ${this.titular}")
+        this.saldo += valor
+    }
+
+    override fun toString(): String {
+        return "Conta(titular='$titular', numero=$numero, saldo=$saldo)"
+    }
+}
+
+private fun testaCopiasEReferencias() {
+    val contaAlexandre = Conta()
+    contaAlexandre.titular = "Alexandre"
+    contaAlexandre.numero = 4140
+    contaAlexandre.saldo = 100.0
     println(contaAlexandre)
 
     val contaFran = Conta()
@@ -23,15 +52,6 @@ fun main() {
     conta2.titular = "Stephanie"
     println(conta1.titular)
     println(conta2.titular)
-}
-
-class Conta {
-    var titular = ""
-    var numero = 0
-    var saldo = 0.0
-
-
-
 }
 
 private fun testaLacos() {
