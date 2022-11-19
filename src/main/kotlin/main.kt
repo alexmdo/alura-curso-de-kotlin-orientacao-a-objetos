@@ -12,15 +12,24 @@ fun main() {
     contaFran.numero = 4840
     contaFran.saldo = 300.0
     println(contaFran)
+
+    /*val conta1 = 1010
+    var conta2 = conta1
+    conta2++*/
+
+    val conta1 = Conta()
+    conta1.titular = "Isabella"
+    val conta2 = Conta()
+    conta2.titular = "Stephanie"
+    println(conta1.titular)
+    println(conta2.titular)
 }
 
 class Conta {
     var titular = ""
     var numero = 0
     var saldo = 0.0
-    override fun toString(): String {
-        return "Conta(titular='$titular', numero=$numero, saldo=$saldo)"
-    }
+
 
 
 }
