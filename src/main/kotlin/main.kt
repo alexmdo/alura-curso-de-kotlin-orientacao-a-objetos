@@ -29,9 +29,12 @@ fun main() {
 }
 
 class Conta {
-    private var titular = ""
-    private var numero = 0
-    private var saldo = 0.0
+    var titular = ""
+        private set
+    var numero = 0
+        private set
+    var saldo = 0.0
+        private set
 
     constructor(titular: String, numero: Int) {
         this.titular = titular
@@ -61,10 +64,6 @@ class Conta {
         }
 
         return false
-    }
-
-    fun getSaldo(): Double {
-        return saldo
     }
 
     override fun toString(): String {
