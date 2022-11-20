@@ -2,15 +2,15 @@ fun main() {
     println("Bem vindo ao Bytebank")
 
     val contaAlexandre = Conta()
-    contaAlexandre.titular = "Alexandre"
-    contaAlexandre.numero = 4140
-    contaAlexandre.saldo = 100.0
+    contaAlexandre.setTitular("Alexandre")
+    contaAlexandre.setNumero(4140)
+    contaAlexandre.depositar(100.0)
     println(contaAlexandre)
 
     val contaFran = Conta()
-    contaFran.titular = "Fran"
-    contaFran.numero = 4840
-    contaFran.saldo = 200.0
+    contaFran.setTitular("Fran")
+    contaFran.setNumero(4840)
+    contaFran.depositar(200.0)
     println(contaFran)
 
     contaAlexandre.depositar(50.0)
@@ -33,13 +33,15 @@ fun main() {
 }
 
 class Conta {
-    var titular = ""
-    var numero = 0
-    var saldo = 0.0
+    private var titular = ""
+    private var numero = 0
+    private var saldo = 0.0
 
     fun depositar(valor: Double) {
-        println("depositando na conta do ${this.titular}")
-        this.saldo += valor
+        if (valor > 0) {
+            println("depositando na conta do ${this.titular}")
+            this.saldo += valor
+        }
     }
 
     fun sacar(valor: Double) {
@@ -53,11 +55,23 @@ class Conta {
         println("transferencia de $valor da conta do $titular para conta ${contaDestino.titular}")
         if (saldo >= valor) {
             saldo -= valor
-            contaDestino.saldo += valor
+            contaDestino.depositar(valor)
             return true
         }
 
         return false
+    }
+
+    fun getSaldo(): Double {
+        return saldo
+    }
+
+    fun setTitular(titular: String) {
+        this.titular = titular
+    }
+
+    fun setNumero(numero: Int) {
+        this.numero = numero
     }
 
     override fun toString(): String {
@@ -65,7 +79,7 @@ class Conta {
     }
 }
 
-private fun testaCopiasEReferencias() {
+/*private fun testaCopiasEReferencias() {
     val contaAlexandre = Conta()
     contaAlexandre.titular = "Alexandre"
     contaAlexandre.numero = 4140
@@ -78,9 +92,9 @@ private fun testaCopiasEReferencias() {
     contaFran.saldo = 300.0
     println(contaFran)
 
-    /*val conta1 = 1010
+    *//*val conta1 = 1010
     var conta2 = conta1
-    conta2++*/
+    conta2++*//*
 
     val conta1 = Conta()
     conta1.titular = "Isabella"
@@ -88,7 +102,7 @@ private fun testaCopiasEReferencias() {
     conta2.titular = "Stephanie"
     println(conta1.titular)
     println(conta2.titular)
-}
+}*/
 
 private fun testaLacos() {
     /*for (i in 5 downTo 1 step 2) {
