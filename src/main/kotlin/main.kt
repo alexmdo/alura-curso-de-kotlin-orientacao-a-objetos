@@ -1,15 +1,11 @@
 fun main() {
     println("Bem vindo ao Bytebank")
 
-    val contaAlexandre = Conta()
-    contaAlexandre.setTitular("Alexandre")
-    contaAlexandre.setNumero(4140)
+    val contaAlexandre = Conta("Alexandre", 4140)
     contaAlexandre.depositar(100.0)
     println(contaAlexandre)
 
-    val contaFran = Conta()
-    contaFran.setTitular("Fran")
-    contaFran.setNumero(4840)
+    val contaFran = Conta("Fran", 4840)
     contaFran.depositar(200.0)
     println(contaFran)
 
@@ -36,6 +32,11 @@ class Conta {
     private var titular = ""
     private var numero = 0
     private var saldo = 0.0
+
+    constructor(titular: String, numero: Int) {
+        this.titular = titular
+        this.numero = numero
+    }
 
     fun depositar(valor: Double) {
         if (valor > 0) {
@@ -64,14 +65,6 @@ class Conta {
 
     fun getSaldo(): Double {
         return saldo
-    }
-
-    fun setTitular(titular: String) {
-        this.titular = titular
-    }
-
-    fun setNumero(numero: Int) {
-        this.numero = numero
     }
 
     override fun toString(): String {
